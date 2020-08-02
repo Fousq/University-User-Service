@@ -4,9 +4,10 @@ import { User } from "../entity/user.entity";
 export const UserSchema = new EntitySchema<User>({
     name: 'User',
     target: User,
+    tableName: 'user_account',
     columns: {
         id: {
-            type: Number,
+            type: "bigint",
             primary: true,
             generated: true
         },

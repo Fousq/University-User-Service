@@ -11,11 +11,7 @@ export class UserService {
     findUserByUsernameAndPassword(username: string, password: string): Promise<User> {
         return this.entityManager.find<User>('User', { where: { username: username, password: password }})
         .then((result) => {
-            const user: User = result.pop();
-            if (!user) {
-                throw new UnauthorizedException('Found no user with such username or password');
-            }
-            return user;
+            return result.pop();
         }).catch((error) => {
             throw new PersistenceException(error.message);
         });
